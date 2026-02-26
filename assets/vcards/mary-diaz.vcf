@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Diaz;Mary;;;
+FN:Mary Diaz
+ORG:Maple Bridge Law LLC
+TITLE:Paralegal
+EMAIL;TYPE=WORK:mary@jenkinstitle.com
+TEL;TYPE=WORK,VOICE:678-572-1956
+TEL;TYPE=WORK,VOICE:678-460-8885
+ADR;TYPE=WORK:;;416 Pirkle Ferry Road;Suite L-100;Cumming;GA;30040;US
+URL:https://maplebridgelaw.com/team/mary-diaz
+PHOTO;VALUE=URI:https://maplebridgelaw.com/assets/images/team/mary.jpeg
+END:VCARD

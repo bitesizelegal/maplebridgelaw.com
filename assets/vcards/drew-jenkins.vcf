@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Jenkins;Drew;;;
+FN:Drew Jenkins
+ORG:Maple Bridge Law LLC
+TITLE:Attorney
+EMAIL;TYPE=WORK:drew@maplebridgelaw.com
+TEL;TYPE=WORK,VOICE:678-572-1954
+TEL;TYPE=WORK,VOICE:678-460-8885
+ADR;TYPE=WORK:;;416 Pirkle Ferry Road;Suite L-100;Cumming;GA;30040;US
+URL:https://maplebridgelaw.com/team/drew-jenkins
+PHOTO;VALUE=URI:https://maplebridgelaw.com/assets/images/team/drew.jpeg
+END:VCARD

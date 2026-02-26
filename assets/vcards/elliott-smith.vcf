@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Smith;Elliott;;;
+FN:Elliott Smith
+ORG:Maple Bridge Law LLC
+TITLE:Attorney
+EMAIL;TYPE=WORK:elliott@maplebridgelaw.com
+TEL;TYPE=WORK,VOICE:678-541-8878
+TEL;TYPE=WORK,VOICE:678-460-8885
+ADR;TYPE=WORK:;;416 Pirkle Ferry Road;Suite L-100;Cumming;GA;30040;US
+URL:https://maplebridgelaw.com/team/elliott-smith
+PHOTO;VALUE=URI:https://maplebridgelaw.com/assets/images/team/elliott.jpeg
+END:VCARD

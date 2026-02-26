@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Jenkins;Amber;;;
+FN:Amber Jenkins
+ORG:Maple Bridge Law LLC
+TITLE:Foreign Law Consultant
+EMAIL;TYPE=WORK:amber@maplebridgelaw.com
+TEL;TYPE=WORK,VOICE:678-460-8885
+ADR;TYPE=WORK:;;416 Pirkle Ferry Road;Suite L-100;Cumming;GA;30040;US
+URL:https://maplebridgelaw.com/team/amber-jenkins
+PHOTO;VALUE=URI:https://maplebridgelaw.com/assets/images/team/amber-placeholder.svg
+END:VCARD
