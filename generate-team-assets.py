@@ -59,6 +59,7 @@ EMPLOYEES = [
         "email": "amber@maplebridgelaw.com",
         "phone": None,
         "photo": "amber-placeholder.svg",
+        "hidden": True,
         "bio": "Graduate of the University of Alabama School of Law with an LLM in International &amp; Comparative Law as well as an LLM from Ocean University School of Law in Economic Law, Amber's expertise is the intersection of corporate, real estate, and immigration law. In addition to an impressive legal background, she is a licensed broker in Georgia. Her combined real estate experience through owning and managing properties and an active realtor's license in Georgia prepares her well to handle all sides of real estate transactions.",
     },
     {
@@ -427,6 +428,24 @@ def main():
     QR_DIR.mkdir(parents=True, exist_ok=True)
 
     for emp in EMPLOYEES:
+        if emp.get("hidden"):
+            print(f"  Skipping {emp['first']} {emp['last']} (hidden)")
+            # Remove existing files if present
+            for p in [
+                VCARD_DIR / f"{emp['slug']}.vcf",
+                TEAM_DIR / emp['slug'] / "index.html",
+                QR_DIR / f"{emp['slug']}.png",
+            ]:
+                if p.exists():
+                    p.unlink()
+                    print(f"    Removed: {p.relative_to(SCRIPT_DIR)}")
+            # Remove empty directory
+            d = TEAM_DIR / emp['slug']
+            if d.exists():
+                d.rmdir()
+            print()
+            continue
+
         # vCard
         vcard_path = VCARD_DIR / f"{emp['slug']}.vcf"
         vcard_path.write_text(generate_vcard(emp))
