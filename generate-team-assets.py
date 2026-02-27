@@ -144,6 +144,26 @@ def generate_html(emp):
   <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.svg">
 
   <style>
+    .profile-breadcrumb-bar {{
+      margin-top: 80px;
+      padding: 0.75rem 0;
+      border-bottom: 3px solid var(--navy);
+      font-size: 0.9rem;
+    }}
+    .profile-breadcrumb-bar a {{
+      color: var(--text-light);
+    }}
+    .profile-breadcrumb-bar a:hover {{
+      color: var(--teal-dark);
+    }}
+    .profile-breadcrumb-bar .separator {{
+      margin: 0 0.5rem;
+      color: var(--text-light);
+    }}
+    .profile-breadcrumb-bar span:last-child {{
+      color: var(--navy);
+      font-weight: 600;
+    }}
     .profile-section {{
       max-width: 700px;
       margin: 0 auto;
@@ -265,20 +285,16 @@ def generate_html(emp):
     </div>
   </header>
 
-  <!-- Page Header -->
-  <section class="page-header">
+  <!-- Breadcrumb Bar -->
+  <div class="profile-breadcrumb-bar">
     <div class="container">
-      <div class="breadcrumbs">
-        <a href="../../index.html">Home</a>
-        <span class="separator">/</span>
-        <a href="../../team.html">Team</a>
-        <span class="separator">/</span>
-        <span>{emp['first']} {emp['last']}</span>
-      </div>
-      <h1>{emp['first']} {emp['last']}</h1>
-      <p>{emp['role']}</p>
+      <a href="../../index.html">Home</a>
+      <span class="separator">/</span>
+      <a href="../../team.html">Team</a>
+      <span class="separator">/</span>
+      <span>{emp['first']} {emp['last']}</span>
     </div>
-  </section>
+  </div>
 
   <!-- Profile -->
   <section>
