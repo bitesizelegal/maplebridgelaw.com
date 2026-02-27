@@ -138,10 +138,10 @@ def generate_html(emp):
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.svg">
 
   <style>
     .profile-section {{
@@ -241,8 +241,8 @@ def generate_html(emp):
   <!-- Header -->
   <header>
     <div class="header-inner">
-      <a href="../index.html" class="logo">
-        <img src="../assets/images/logo.svg" alt="Maple Bridge Law">
+      <a href="../../index.html" class="logo">
+        <img src="../../assets/images/logo.svg" alt="Maple Bridge Law">
         <div class="logo-text">
           Maple Bridge
           <span>Law</span>
@@ -256,11 +256,11 @@ def generate_html(emp):
       </button>
 
       <nav>
-        <a href="../index.html">Home</a>
-        <a href="../practice-areas.html">Practice Areas</a>
-        <a href="../about.html">About</a>
-        <a href="../team.html" class="active">Team</a>
-        <a href="../contact.html" class="nav-cta">Contact Us</a>
+        <a href="../../index.html">Home</a>
+        <a href="../../practice-areas.html">Practice Areas</a>
+        <a href="../../about.html">About</a>
+        <a href="../../team.html" class="active">Team</a>
+        <a href="../../contact.html" class="nav-cta">Contact Us</a>
       </nav>
     </div>
   </header>
@@ -269,9 +269,9 @@ def generate_html(emp):
   <section class="page-header">
     <div class="container">
       <div class="breadcrumbs">
-        <a href="../index.html">Home</a>
+        <a href="../../index.html">Home</a>
         <span class="separator">/</span>
-        <a href="../team.html">Team</a>
+        <a href="../../team.html">Team</a>
         <span class="separator">/</span>
         <span>{emp['first']} {emp['last']}</span>
       </div>
@@ -284,7 +284,7 @@ def generate_html(emp):
   <section>
     <div class="container">
       <div class="profile-section">
-        <img class="profile-photo" src="../assets/images/team/{emp['photo']}" alt="{emp['first']} {emp['last']}">
+        <img class="profile-photo" src="../../assets/images/team/{emp['photo']}" alt="{emp['first']} {emp['last']}">
         <h2 class="profile-name">{emp['first']} {emp['last']}</h2>
         <p class="profile-role">{emp['role']}</p>
 
@@ -299,7 +299,7 @@ def generate_html(emp):
           </a>
         </div>
 {bio_html}
-        <a href="../assets/vcards/{emp['slug']}.vcf" class="save-contact-btn" download>
+        <a href="../../assets/vcards/{emp['slug']}.vcf" class="save-contact-btn" download>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
           Save Contact
         </a>
@@ -332,18 +332,18 @@ def generate_html(emp):
         <div class="footer-links">
           <h4>Practice Areas</h4>
           <ul>
-            <li><a href="../practice-areas.html#real-estate">Real Estate</a></li>
-            <li><a href="../practice-areas.html#corporate">Corporate Law</a></li>
-            <li><a href="../practice-areas.html#international">International</a></li>
+            <li><a href="../../practice-areas.html#real-estate">Real Estate</a></li>
+            <li><a href="../../practice-areas.html#corporate">Corporate Law</a></li>
+            <li><a href="../../practice-areas.html#international">International</a></li>
           </ul>
         </div>
 
         <div class="footer-links">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="../about.html">About Us</a></li>
-            <li><a href="../team.html">Our Team</a></li>
-            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../../about.html">About Us</a></li>
+            <li><a href="../../team.html">Our Team</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
             <li><a href="https://www.jenkinstitle.com" target="_blank">Jenkins Title</a></li>
           </ul>
         </div>
@@ -414,8 +414,10 @@ def main():
         vcard_path.write_text(generate_vcard(emp))
         print(f"  vCard: {vcard_path.relative_to(SCRIPT_DIR)}")
 
-        # HTML page
-        html_path = TEAM_DIR / f"{emp['slug']}.html"
+        # HTML page (team/{slug}/index.html for clean URLs)
+        page_dir = TEAM_DIR / emp['slug']
+        page_dir.mkdir(exist_ok=True)
+        html_path = page_dir / "index.html"
         html_path.write_text(generate_html(emp))
         print(f"  Page:  {html_path.relative_to(SCRIPT_DIR)}")
 
