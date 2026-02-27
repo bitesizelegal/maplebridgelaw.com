@@ -149,6 +149,7 @@ def generate_html(emp):
       padding: 1rem 0;
       background: var(--navy);
       font-size: 0.9rem;
+      text-align: center;
     }}
     .profile-breadcrumb-bar a {{
       color: rgba(255, 255, 255, 0.7);
