@@ -56,7 +56,7 @@ EMPLOYEES = [
         "last": "Kelesarian",
         "role": "Foreign Law Consultant – GA",
         "title": "Foreign Law Consultant",
-        "email": "zovig@jenkinstitle.com",
+        "email": "zovig@maplebridgelaw.com",
         "phone": None,
         "photo": "zovig.jpeg",
         "bio": "Zovig Kelesarian Berejiklian is an internationally trained attorney and certified Foreign Law Consultant in the State of Georgia, with extensive experience in cross-border legal matters and U.S. transactional practice. She holds a Law degree from the Universidad Central de Venezuela and completed postgraduate legal studies in Business Law and Alternative Dispute Resolution in Argentina. Fluent in Spanish, English, and Armenian, Zovig brings a global legal perspective and strong attention to detail to her work at Maple Bridge Law.",
