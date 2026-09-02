@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Pierce;Sam;;;
+FN:Sam Pierce
+ORG:Maple Bridge Law LLC
+TITLE:Attorney
+EMAIL;TYPE=WORK:sam@maplebridgelaw.com
+TEL;TYPE=WORK,VOICE:678-460-8885
+ADR;TYPE=WORK:;;416 Pirkle Ferry Road;Suite L-100;Cumming;GA;30040;US
+URL:https://maplebridgelaw.com/team/sam-pierce
+PHOTO;VALUE=URI:https://maplebridgelaw.com/assets/images/team/sam-placeholder.svg
+END:VCARD
