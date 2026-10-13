@@ -21,44 +21,66 @@ EMPLOYEES = [
         "slug": "drew-jenkins",
         "first": "Drew",
         "last": "Jenkins",
-        "role": "Attorney – AL, GA",
+        "role": "Founder · Attorney · Admitted in Georgia and Alabama",
         "title": "Attorney",
         "email": "drew@maplebridgelaw.com",
         "phone": "678-572-1954",
-        "photo": "drew.jpeg",
+        "photo": "portrait/drew.jpg",
         "bio": "Drew Jenkins is the founder of Maple Bridge Law LLC in Atlanta, Georgia and AMA Capital, LLC in Birmingham, Alabama. He is an attorney licensed in both Alabama and Georgia who specializes in real estate transactions, financing, title, business structure, and international related projects. Drew handles both residential and commercial properties with deep experience in SBA, EB-5 financing, and 1031 transactions. He earned his B.A. degree, magna cum laude, from the University of Alabama at Birmingham and his J.D. degree from the University of Alabama School of Law.",
     },
     {
         "slug": "elliott-smith",
         "first": "Elliott",
         "last": "Smith",
-        "role": "Attorney – GA",
+        "role": "Attorney · Admitted in Georgia",
         "title": "Attorney",
         "email": "elliott@maplebridgelaw.com",
         "phone": "678-541-8878",
-        "photo": "elliott.jpeg",
+        "photo": "portrait/elliott.jpg",
         "bio": "Elliott Smith is an experienced attorney for title insurance underwriting, real estate closings, development and permitting. Formerly a member of Lipscomb &amp; Johnson law firm in Cumming, Elliott has been in private law practice for over 20 years. He is a graduate of Woodward Academy, the University of Georgia (B.A. Political Science, 1995), and Georgia State University College of Law (J.D., 2000). Elliott is an active member of the State Bar of Georgia and the Real Property Law Section.",
+    },
+    {
+        "slug": "said-jabbour",
+        "first": "Said",
+        "last": "Jabbour",
+        "role": "Attorney · Admitted in Alabama only",
+        "title": "Attorney",
+        "email": None,
+        "phone": None,
+        "photo": "portrait/said.jpg",
+        "bio": "Said&rsquo;s background includes Vulcan Materials and Balch &amp; Bingham, where he worked on mergers and acquisitions, corporate finance, and securities. He holds a JD and an LLM in taxation from the University of Alabama.",
+    },
+    {
+        "slug": "clay-johnson",
+        "first": "Clay",
+        "last": "Johnson",
+        "role": "Attorney · Admitted in Alabama only",
+        "title": "Attorney",
+        "email": None,
+        "phone": None,
+        "photo": "portrait/clay.jpg",
+        "bio": "Clay works on corporate, commercial, and real estate transactions. Before Maple Bridge Law, he worked at Vulcan Materials, Shipt, and Baker Donelson. He holds a JD and an MBA from Samford University.",
     },
     {
         "slug": "sam-pierce",
         "first": "Sam",
         "last": "Pierce",
-        "role": "Attorney – AL",
+        "role": "Attorney · Admitted in Alabama",
         "title": "Attorney",
         "email": "sam@maplebridgelaw.com",
         "phone": None,
-        "photo": "sam.jpeg",
+        "photo": "portrait/sam.jpg",
         "bio": "Samuel C. Pierce represents commercial lenders, developers, and real estate professionals throughout Alabama. His practice draws on more than a decade of experience spanning complex commercial litigation, financial services, corporate transactions, contract negotiation, compliance, and real estate matters. He has also held several in-house counsel and general counsel roles for companies ranging from emerging startups to national organizations, advising executives on commercial contracts, employment matters, regulatory compliance, risk management, and dispute resolution. His unique background provides clients with both the practical business perspective of in-house counsel and the advocacy skills of an experienced litigator. Earlier in his career, Sam practiced with Baker Donelson, one of the Southeast&rsquo;s largest law firms, as a member of the Financial Services Practice Group and Corporate Restructuring &amp; Bankruptcy Practice Group. Sam earned his J.D., cum laude, from Cumberland School of Law at Samford University, where he graduated in the top 8% of his class and served as a Research Editor on the Cumberland Law Review.",
     },
     {
         "slug": "zovig-kelesarian",
         "first": "Zovig",
         "last": "Kelesarian",
-        "role": "Foreign Law Consultant – GA",
-        "title": "Foreign Law Consultant",
+        "role": "Legal Consultant · Admitted to the practice of law in Venezuela",
+        "title": "Legal Consultant",
         "email": "zovig@maplebridgelaw.com",
         "phone": None,
-        "photo": "zovig.jpeg",
+        "photo": "portrait/zovig.jpg",
         "bio": "Zovig Kelesarian Berejiklian is an internationally trained attorney and certified Foreign Law Consultant in the State of Georgia, with extensive experience in cross-border legal matters and U.S. transactional practice. She holds a Law degree from the Universidad Central de Venezuela and completed postgraduate legal studies in Business Law and Alternative Dispute Resolution in Argentina. Fluent in Spanish, English, and Armenian, Zovig brings a global legal perspective and strong attention to detail to her work at Maple Bridge Law.",
     },
     {
@@ -81,7 +103,7 @@ EMPLOYEES = [
         "title": "Paralegal",
         "email": "mary@jenkinstitle.com",
         "phone": "678-572-1956",
-        "photo": "mary.jpeg",
+        "photo": "portrait/mary.jpg",
         "bio": None,
     },
     {
@@ -92,7 +114,7 @@ EMPLOYEES = [
         "title": "Post-Closing Assistant",
         "email": "eli@jenkinstitle.com",
         "phone": None,
-        "photo": "eliberth.jpeg",
+        "photo": "portrait/eliberth.jpg",
         "bio": "Eliberth Cordova is a professional with experience in real estate closings and document management. She completed legal studies at Universidad Santa Mar&iacute;a in Caracas, Venezuela, and has prior experience in real estate as a realtor with Century 21 International. She is currently in the process of obtaining her real estate licenses in the states of Georgia and Florida.",
     },
 ]
@@ -107,8 +129,9 @@ def generate_vcard(emp):
         f"FN:{emp['first']} {emp['last']}",
         f"ORG:{COMPANY}",
         f"TITLE:{emp['title']}",
-        f"EMAIL;TYPE=WORK:{emp['email']}",
     ]
+    if emp.get("email"):
+        lines.append(f"EMAIL;TYPE=WORK:{emp['email']}")
     if emp.get("phone"):
         lines.append(f"TEL;TYPE=WORK,VOICE:{emp['phone']}")
     lines.append(f"TEL;TYPE=WORK,VOICE:{OFFICE_PHONE}")
@@ -119,307 +142,141 @@ def generate_vcard(emp):
     return "\r\n".join(lines)
 
 
-def generate_html(emp):
-    """Generate an individual employee page."""
-    phone_html = ""
-    if emp.get("phone"):
-        phone_html = f"""
-                <a href="tel:{emp['phone']}" class="profile-contact-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                  <span>{emp['phone']}</span>
-                </a>"""
 
-    bio_html = ""
-    if emp.get("bio"):
-        bio_html = f"""
-          <div class="profile-bio">
-            <p>{emp['bio']}</p>
-          </div>"""
+FONTS = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Source+Sans+3:wght@400;500;600&display=swap"
 
+PRACTICES = ["Corporate &amp; M&amp;A", "Funds &amp; Securities", "Lending", "Real Estate", "Tax", "International"]
+
+
+def site_head(title, description, p=""):
+    """<head> shared by every page. p = path prefix back to the site root ("" or "../../")."""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{emp['first']} {emp['last']} - {emp['role']} at Maple Bridge Law LLC.">
-  <title>{emp['first']} {emp['last']} | Maple Bridge Law</title>
-
-  <!-- Fonts -->
+  <title>{title}</title>
+  <meta name="description" content="{description}">
+  <link rel="icon" type="image/svg+xml" href="{p}assets/images/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="../../assets/css/style.css">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="../../assets/images/logo.svg">
-
-  <style>
-    .profile-breadcrumb-bar {{
-      margin-top: 80px;
-      padding: 1rem 0;
-      background: var(--navy);
-      font-size: 0.9rem;
-      text-align: center;
-    }}
-    .profile-breadcrumb-bar a {{
-      color: rgba(255, 255, 255, 0.7);
-    }}
-    .profile-breadcrumb-bar a:hover {{
-      color: var(--teal-light);
-    }}
-    .profile-breadcrumb-bar .separator {{
-      margin: 0 0.5rem;
-      color: rgba(255, 255, 255, 0.4);
-    }}
-    .profile-breadcrumb-bar span:last-child {{
-      color: var(--white);
-      font-weight: 600;
-    }}
-    .profile-section {{
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }}
-    .profile-photo {{
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--teal);
-      margin-bottom: 1.5rem;
-    }}
-    .profile-name {{
-      font-size: 2.25rem;
-      margin-bottom: 0.25rem;
-    }}
-    .profile-role {{
-      color: var(--teal-dark);
-      font-weight: 600;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1.5rem;
-    }}
-    .profile-contacts {{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }}
-    .profile-contact-item {{
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text);
-      font-size: 1.05rem;
-    }}
-    .profile-contact-item:hover {{
-      color: var(--teal-dark);
-    }}
-    .profile-contact-item svg {{
-      color: var(--teal);
-      flex-shrink: 0;
-    }}
-    .profile-bio {{
-      text-align: left;
-      margin-bottom: 2rem;
-      padding: 2rem;
-      background: var(--off-white);
-      border-radius: 8px;
-    }}
-    .profile-bio p {{
-      line-height: 1.8;
-      color: var(--text);
-    }}
-    .save-contact-btn {{
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--teal);
-      color: var(--white);
-      padding: 1rem 2rem;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: var(--transition);
-      border: 2px solid var(--teal);
-    }}
-    .save-contact-btn:hover {{
-      background: var(--teal-dark);
-      border-color: var(--teal-dark);
-      color: var(--white);
-    }}
-    .save-contact-btn svg {{
-      flex-shrink: 0;
-    }}
-    .back-link {{
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-    }}
-  </style>
+  <link href="{FONTS}" rel="stylesheet">
+  <link rel="stylesheet" href="{p}assets/css/site.css">
 </head>
 <body>
+"""
 
-  <!-- Header -->
-  <header>
-    <div class="header-inner">
-      <a href="../../index.html" class="logo">
-        <img src="../../assets/images/logo.svg" alt="Maple Bridge Law">
-        <div class="logo-text">
-          Maple Bridge
-          <span>Law</span>
-        </div>
-      </a>
 
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+def site_header(p=""):
+    return f"""
+<header id="top">
+  <div class="wrap nav">
+    <a class="brand" href="{p}index.html"><img src="{p}assets/images/logo.svg" alt=""><span>Maple Bridge Law</span></a>
+    <button class="menu" aria-label="Menu">&#9776;</button>
+    <nav>
+      <a href="{p}index.html#practice">Practice</a>
+      <a href="{p}index.html#approach">Approach</a>
+      <a href="{p}index.html#team">People</a>
+      <a href="{p}index.html#affiliates">Affiliates</a>
+      <a href="{p}contact.html" class="btn btn-navy">Book a call</a>
+    </nav>
+  </div>
+</header>
+"""
 
-      <nav>
-        <a href="../../index.html">Home</a>
-        <a href="../../practice-areas.html">Practice Areas</a>
-        <a href="../../about.html">About</a>
-        <a href="../../team.html" class="active">Team</a>
-        <a href="../../contact.html" class="nav-cta">Contact Us</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Breadcrumb Bar -->
-  <div class="profile-breadcrumb-bar">
-    <div class="container">
-      <a href="../../index.html">Home</a>
-      <span class="separator">/</span>
-      <a href="../../team.html">Team</a>
-      <span class="separator">/</span>
-      <span>{emp['first']} {emp['last']}</span>
+def site_cta(p=""):
+    return f"""
+<section class="cta" id="contact">
+  <div class="wrap inner">
+    <div class="rv"><h2>Tell us about <em>the deal.</em></h2><p>A short call with an attorney, a clear scope, and a fee before work begins.</p></div>
+    <div class="ctas rv">
+      <a href="{p}contact.html" class="btn btn-light">Book a call</a>
+      <a href="tel:{OFFICE_PHONE}" class="btn btn-ghost">{OFFICE_PHONE}</a>
     </div>
   </div>
+</section>
+"""
 
-  <!-- Profile -->
-  <section>
-    <div class="container">
-      <div class="profile-section">
-        <img class="profile-photo" src="../../assets/images/team/{emp['photo']}" alt="{emp['first']} {emp['last']}">
-        <h2 class="profile-name">{emp['first']} {emp['last']}</h2>
-        <p class="profile-role">{emp['role']}</p>
 
-        <div class="profile-contacts">
-          <a href="mailto:{emp['email']}" class="profile-contact-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>{emp['email']}</span>
-          </a>{phone_html}
-          <a href="tel:{OFFICE_PHONE}" class="profile-contact-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2" ry="2"/><line x1="2" y1="9" x2="22" y2="9"/></svg>
-            <span>Office: {OFFICE_PHONE}</span>
-          </a>
-        </div>
-
-        <a href="../../assets/vcards/{emp['slug']}.vcf" class="save-contact-btn" download>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          Save Contact
-        </a>
-{bio_html}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Banner -->
-  <section class="cta-banner">
-    <div class="container">
-      <h2>Ready to Discuss Your Legal Needs?</h2>
-      <p>Contact us today for a consultation. We're here to help protect your interests and achieve your goals.</p>
-      <a href="tel:{OFFICE_PHONE}" class="btn btn-primary">Call {OFFICE_PHONE}</a>
-      <a href="mailto:info@maplebridgelaw.com" class="btn btn-outline">Email Us</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="logo-text">
-            Maple Bridge
-            <span>Law</span>
-          </div>
-          <p>Strategic legal solutions for businesses and individuals. Serving clients throughout Georgia and Alabama in real estate, corporate law, and international matters.</p>
-        </div>
-
-        <div class="footer-links">
-          <h4>Practice Areas</h4>
-          <ul>
-            <li><a href="../../practice-areas.html#real-estate">Real Estate</a></li>
-            <li><a href="../../practice-areas.html#corporate">Corporate Law</a></li>
-            <li><a href="../../practice-areas.html#international">International</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="../../about.html">About Us</a></li>
-            <li><a href="../../team.html">Our Team</a></li>
-            <li><a href="../../contact.html">Contact</a></li>
-            <li><a href="https://www.jenkinstitle.com" target="_blank">Jenkins Title</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links">
-          <h4>Contact</h4>
-          <ul>
-            <li>416 Pirkle Ferry Road<br>Suite L-100<br>Cumming, GA 30040</li>
-            <li><a href="tel:{OFFICE_PHONE}">{OFFICE_PHONE}</a></li>
-            <li><a href="mailto:info@maplebridgelaw.com">info@maplebridgelaw.com</a></li>
-          </ul>
+def site_footer(p=""):
+    practices = "".join(f'<li><a href="{p}index.html#practice">{x}</a></li>' for x in PRACTICES)
+    return f"""
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a class="brand" href="{p}index.html"><img src="{p}assets/images/logo.svg" alt=""><span>Maple Bridge Law</span></a>
+        <div class="social">
+          <a href="https://www.linkedin.com/company/maple-bridge-law-llc" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.facebook.com/people/Maple-Bridge-Law/100091004212306/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <div class="footer-legal">
-          <p>&copy; 2026 Maple Bridge Law LLC. All Rights Reserved.</p>
-          <p class="legal-links"><a href="../../privacy-policy.html">Privacy Policy</a><span>&middot;</span><a href="../../terms-of-service.html">Terms of Service</a></p>
-        </div>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/company/maple-bridge-law-llc" target="_blank" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a href="https://www.facebook.com/people/Maple-Bridge-Law/100091004212306/" target="_blank" aria-label="Facebook">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
+      <div><h5>Practice</h5><ul>{practices}</ul></div>
+      <div><h5>Firm</h5><ul><li><a href="{p}index.html#team">People</a></li><li><a href="{p}contact.html">Contact</a></li><li><a href="https://spectrastrategies.com" target="_blank" rel="noopener">Spectra Strategies</a></li><li><a href="https://www.jenkinstitle.com" target="_blank" rel="noopener">Jenkins Title</a></li><li><a href="https://www.jointide.com" target="_blank" rel="noopener">JoinTide</a></li></ul></div>
+      <div><h5>Office</h5><ul><li>416 Pirkle Ferry Road, Suite L-100</li><li>Cumming, Georgia 30040</li><li><a href="tel:{OFFICE_PHONE}">{OFFICE_PHONE}</a></li><li><a href="mailto:info@maplebridgelaw.com">info@maplebridgelaw.com</a></li></ul></div>
     </div>
-  </footer>
+    <div class="legal">
+      <p>Attorney advertising. Maple Bridge Law LLC attorneys are licensed in Georgia and Alabama as noted for each attorney. Legal consultants are not admitted to practice law in any U.S. jurisdiction. Contacting the firm does not create an attorney-client relationship.</p>
+      <span>&copy; 2026 Maple Bridge Law LLC &middot; <a href="{p}privacy-policy.html">Privacy Policy</a> &middot; <a href="{p}terms-of-service.html">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+"""
 
-  <!-- Mobile Menu Script -->
-  <script>
-    document.querySelector('.menu-toggle').addEventListener('click', function() {{
-      document.querySelector('nav').classList.toggle('active');
-      this.classList.toggle('active');
-    }});
-  </script>
 
+SITE_JS = """
+<script>
+const h=document.querySelector('header');
+addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>8),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const nav=document.querySelector('.nav nav');
+document.querySelector('.menu').addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+const dlg=document.getElementById('bio');
+if(dlg){
+  document.querySelectorAll('button.person').forEach(c=>c.addEventListener('click',()=>{dlg.querySelector('.pop').replaceChildren(c.querySelector('template').content.cloneNode(true));dlg.showModal()}));
+  dlg.querySelector('.pop-x').addEventListener('click',()=>dlg.close());
+  dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+}
+</script>
 </body>
 </html>
 """
+
+
+def generate_html(emp):
+    """Generate an individual team page (team/<slug>/index.html)."""
+    p = "../../"
+    name = f"{emp['first']} {emp['last']}"
+    contact = []
+    if emp.get("email"):
+        contact.append(f'<a href="mailto:{emp["email"]}">{emp["email"]}</a>')
+    if emp.get("phone"):
+        contact.append(f'<a href="tel:{emp["phone"]}">{emp["phone"]}</a>')
+    contact.append(f'<span>Office <a href="tel:{OFFICE_PHONE}">{OFFICE_PHONE}</a></span>')
+    bio_html = f'<div class="bio"><p>{emp["bio"]}</p></div>' if emp.get("bio") else ""
+    return (site_head(f"{name} | Maple Bridge Law", f"{name} - {emp['role']} at Maple Bridge Law LLC.", p)
+            + site_header(p)
+            + f"""
+<section class="page-body">
+  <div class="wrap">
+    <div class="crumbs"><a href="{p}index.html">Home</a> / <a href="{p}index.html#team">People</a> / {name}</div>
+    <div class="profile">
+      <div class="ph"><img src="{p}assets/images/team/{emp['photo']}" alt="{name}"></div>
+      <div>
+        <h1>{name}</h1>
+        <div class="meta">{emp['role']}</div>
+        {bio_html}
+        <div class="pop-contact">{''.join(contact)}</div>
+        <a href="{p}assets/vcards/{emp['slug']}.vcf" class="btn btn-navy save-contact" download>Save contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+"""
+            + site_cta(p) + site_footer(p) + SITE_JS)
 
 
 def generate_qr(url, output_path):
