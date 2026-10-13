@@ -47,7 +47,7 @@ EMPLOYEES = [
         "title": "Attorney",
         "email": "sam@maplebridgelaw.com",
         "phone": None,
-        "photo": "sam-placeholder.svg",
+        "photo": "sam.jpeg",
         "bio": "Samuel C. Pierce represents commercial lenders, developers, and real estate professionals throughout Alabama. His practice draws on more than a decade of experience spanning complex commercial litigation, financial services, corporate transactions, contract negotiation, compliance, and real estate matters. He has also held several in-house counsel and general counsel roles for companies ranging from emerging startups to national organizations, advising executives on commercial contracts, employment matters, regulatory compliance, risk management, and dispute resolution. His unique background provides clients with both the practical business perspective of in-house counsel and the advocacy skills of an experienced litigator. Earlier in his career, Sam practiced with Baker Donelson, one of the Southeast&rsquo;s largest law firms, as a member of the Financial Services Practice Group and Corporate Restructuring &amp; Bankruptcy Practice Group. Sam earned his J.D., cum laude, from Cumberland School of Law at Samford University, where he graduated in the top 8% of his class and served as a Research Editor on the Cumberland Law Review.",
     },
     {
