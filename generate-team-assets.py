@@ -117,6 +117,17 @@ EMPLOYEES = [
         "photo": "portrait/eliberth.jpg",
         "bio": "Eliberth Cordova is a professional with experience in real estate closings and document management. She completed legal studies at Universidad Santa Mar&iacute;a in Caracas, Venezuela, and has prior experience in real estate as a realtor with Century 21 International. She is currently in the process of obtaining her real estate licenses in the states of Georgia and Florida.",
     },
+    {
+        "slug": "ann-barber",
+        "first": "Ann",
+        "last": "Barber",
+        "role": "Paralegal",
+        "title": "Paralegal",
+        "email": "ann@maplebridgelaw.com",
+        "phone": "205-460-2896",
+        "photo": "portrait/ann.jpg",
+        "bio": "Ann Barber supports the firm&rsquo;s lending, real estate, and closing work, including loan documentation, title and UCC matters, recording, and post-closing. She has more than 15 years of experience in mortgage banking, foreclosure, and commercial lending, including law-firm roles at Sirote &amp; Permutt, P.C. and Balch &amp; Bingham LLP and, since 2023, managing closings and post-close servicing for Spectra Capital&rsquo;s commercial real estate bridge loan portfolio. Ann holds a B.S. in Psychology and Justice Sciences from the University of Alabama at Birmingham.",
+    },
 ]
 
 
