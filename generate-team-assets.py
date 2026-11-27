@@ -29,17 +29,6 @@ EMPLOYEES = [
         "bio": "Drew Jenkins is the founder of Maple Bridge Law LLC in Atlanta, Georgia and AMA Capital, LLC in Birmingham, Alabama. He is an attorney licensed in both Alabama and Georgia who specializes in real estate transactions, financing, title, business structure, and international related projects. Drew handles both residential and commercial properties with deep experience in SBA, EB-5 financing, and 1031 transactions. He earned his B.A. degree, magna cum laude, from the University of Alabama at Birmingham and his J.D. degree from the University of Alabama School of Law.",
     },
     {
-        "slug": "elliott-smith",
-        "first": "Elliott",
-        "last": "Smith",
-        "role": "Attorney · Admitted in Georgia",
-        "title": "Attorney",
-        "email": "elliott@maplebridgelaw.com",
-        "phone": "678-541-8878",
-        "photo": "portrait/elliott.jpg",
-        "bio": "Elliott Smith is an experienced attorney for title insurance underwriting, real estate closings, development and permitting. Formerly a member of Lipscomb &amp; Johnson law firm in Cumming, Elliott has been in private law practice for over 20 years. He is a graduate of Woodward Academy, the University of Georgia (B.A. Political Science, 1995), and Georgia State University College of Law (J.D., 2000). Elliott is an active member of the State Bar of Georgia and the Real Property Law Section.",
-    },
-    {
         "slug": "said-jabbour",
         "first": "Said",
         "last": "Jabbour",
